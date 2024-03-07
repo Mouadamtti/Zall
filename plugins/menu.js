@@ -35,8 +35,55 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
 
-  _*< LISTA DE MENUS />*_
-  ▢ _/test_
+  _*< Bot Commnds />*_
+
+▢ _/jadibot_
+▢ _/listjadibot_
+▢ _/deletesesion_
+▢ _/runtime_
+▢ _/ping_
+
+_*< Premium Commnds />*_
+
+▢ _/apk_
+▢ _/uptodown_
+
+_*< downloade Commnds />*
+
+▢ _/play_
+▢ _/ytmp3_
+▢ _/ytmp4_
+▢ _/yts_
+▢ _/ig_
+▢ _/img_
+▢ _/tiktok_
+
+_*< Ai Commnds />*_
+
+▢ _/imagine_
+▢ _/imganime_
+▢ _/hdr_
+▢ _/bard_
+▢ _/bard2 (beta)_
+▢ _/bardimg_
+▢ _/ai_
+▢ _/chatgpt_
+▢ _/hdr_
+▢ _/ocr_
+▢ _/tr <code>_
+▢ _/cuturl_
+
+_*< Accounte Commnds />*_
+
+▢ _/make-account_
+▢ _/del-account_
+▢ _/transfer_
+▢ _/info_
+
+_*< Other Commnds />*_
+
+▢ _/infobot_
+
 `.trim();
     if (m.isGroup) {
       // await conn.sendFile(m.chat, vn, 'menu.mp3', null, m, true, { type: 'audioMessage', ptt: true})
