@@ -48,7 +48,6 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 ┗━━━━━━━━⬣
 ┏━━⊜ *< Premium Commnds />*_
 ┃⋄ /apk
-┃⋄ /apk2
 ┃⋄ /uptodown
 ┗━━━━━━━━⬣
 
