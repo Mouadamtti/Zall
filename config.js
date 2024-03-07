@@ -12,13 +12,13 @@ global.botnumber = ""
 global.owner = [
   ['212717457920', 'bobiza', true],
 
-  ['212717457920','bobiza', true],
-  ['212717457920'],
-  ['212717457920']
+  ['212630886351','bobiza', true],
+  ['212630886351'],
+  ['212630886351']
 ];
 
-global.suittag = ['212717457920'];
-global.prems = ['212717457920'];
+global.suittag = ['212630886351'];
+global.prems = ['212630886351'];
 
 global.packname = 'bobiza bot';
 global.author = 'bobiza';
