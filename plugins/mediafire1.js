@@ -236,7 +236,6 @@ ${wait}
 handler.help = ["mediafire1"];
 handler.tags = ["downloader"];
 handler.command = /^mediafire1$/i;
-handler.premium = true;
 export default handler;
 
 async function mediafireDl(url) {
