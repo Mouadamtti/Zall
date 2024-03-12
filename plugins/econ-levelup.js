@@ -28,7 +28,7 @@ Hey there, ${name}! You're not ready to level up just yet. It seems like you nee
     } else {
         let str = `
 ┌─⊷ *LEVEL UP*
-▢ Previous level : *${user.level 1}*
+▢ Previous level : *${user.level -1}*
 ▢ Current level : *${user.level}*
 ▢ Role : *${user.role}*
 └──────────────
