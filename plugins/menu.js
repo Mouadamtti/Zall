@@ -29,7 +29,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 
  ▢ *Nivel:* ${level}
  ▢ *Experiencia:* ${exp}
- ▢ *Gold:* ${limt}
+ ▢ *diamond:* ${limt}
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
  
