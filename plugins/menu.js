@@ -34,16 +34,17 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
  ▢ *Tokens:* ${joincount}
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
-*PREMIUM COMMNDS*
+    *PREMIUM COMMNDS*
+
 ♧ .modapk
 ♧ .uptodown
 ♧ .mediafire
  
-     *RAMDAN COMMNDS*
+    *RAMDAN COMMNDS*
 
 ♧ .ayati
 
-   *AI COMMNDS*
+    *AI COMMNDS*
 
 ♧ .translate (texte)
 ♧ .dehaze
@@ -56,7 +57,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 
     *ACCOUNTE COMMNDS*
 
-♧ .verfiy
+♧ .verify
 ♧ .deleteacc(❌)
 ♧ .levelup
 ♧ .gift (❌)
