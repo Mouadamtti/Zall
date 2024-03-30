@@ -29,14 +29,18 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 
  ▢ *Nivel:* ${level}
  ▢ *Experiencia:* ${exp}
- ▢ *Rango:* ${role}
  ▢ *Diamantes:* ${limit}
- ▢ *Tokens:* ${joincount}
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
     *PREMIUM COMMNDS*
 
 ♧ .modapk
+♤ .hdr
+♤ .emojimix
+♤ .yts
+♤ .levelup
+♤ .verify
+♤ .unreg
 
 `.trim();
     if (m.isGroup) {
