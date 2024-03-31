@@ -29,18 +29,23 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 
  ▢ *Nivel:* ${level}
  ▢ *Experiencia:* ${exp}
- ▢ *Diamantes:* ${limit}
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
-    *PREMIUM COMMNDS*
+    *PREMIUM COMMENDS*
+□ .*modapk*
 
-♧ .modapk
-♤ .hdr
-♤ .emojimix
-♤ .yts
-♤ .levelup
-♤ .verify
-♤ .unreg
+   *AI COMMENDS*
+□ .*hdr*
+□ .*bimg* 
+□ .*emojimix*
+□ .*levelup*
+
+   *DOWNLOAD COMMENDS* 
+□ .*yts*
+□ .*ytv*
+□ .*yta*
+□ .*fb*
+□ .*play2*
 
 `.trim();
     if (m.isGroup) {
