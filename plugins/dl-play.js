@@ -1,169 +1,116 @@
-import fetch from "node-fetch";
-import ytdl from 'youtubedl-core';
-import yts from 'youtube-yts';
-import fs from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import os from 'os';
+import fetch from 'node-fetch';
+import axios from 'axios';
+import {youtubedl, youtubedlv2} from '@bochilteam/scraper';
+import fs from "fs";
+import yts from 'yt-search';
 
-const streamPipeline = promisify(pipeline);
+let limit1 = 100;
+let limit2 = 400;
+let limit_a1 = 50;
+let limit_a2 = 400;
+const handler = async (m, {conn, command, args, text, usedPrefix}) => {
+  const datas = global
+  const idioma = datas.db.data.users[m.sender].language
+  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const tradutor = _translate.plugins.descargas_play
 
-const handler = async (m, {
-    conn,
-    command,
-    text,
-    args,
-    usedPrefix
-}) => {
-    if (!text) throw `give a text to search Example: *${usedPrefix + command}* sefali odia song`;
-    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
-    await conn.reply(m.chat, wait, m);
-    const result = await searchAndDownloadMusic(text);
-    const infoText = `✦ ──『 *GURU PLAYER* 』── ⚝ \n\n [ ⭐ Reply the number of the desired search result to get the Audio]. \n\n` ;
-
-const orderedLinks = result.allLinks.map((link, index) => {
-    const sectionNumber = index + 1;
-    const {
-        title,
-        url
-    } = link;
-    return `*${sectionNumber}.* ${title}`;
-});
-
-    const orderedLinksText = orderedLinks.join("\n\n");
-    const fullText = `${infoText}\n\n${orderedLinksText}`;
-    const {
-        key
-    } = await conn.reply(m.chat, fullText, m);
-    conn.GURUPLAY[m.sender] = {
-        result,
-        key,
-        timeout: setTimeout(() => {
-            conn.sendMessage(m.chat, {
-                delete: key
-            });
-            delete conn.GURUPLAY[m.sender];
-        }, 150 * 1000),
-    };
-};
-
-handler.before = async (m, {
-    conn
-}) => {
-    conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {};
-    if (m.isBaileys || !(m.sender in conn.GURUPLAY)) return;
-    const {
-        result,
-        key,
-        timeout
-    } = conn.GURUPLAY[m.sender];
-   
-    if (!m.quoted || m.quoted.id !== key.id || !m.text) return;
-    const choice = m.text.trim();
-    const inputNumber = Number(choice);
-    if (inputNumber >= 1 && inputNumber <= result.allLinks.length) {
-        const selectedUrl = result.allLinks[inputNumber - 1].url;
-        console.log("selectedUrl", selectedUrl)
-    let title = generateRandomName();
-        const audioStream = ytdl(selectedUrl, {
-            filter: 'audioonly',
-            quality: 'highestaudio',
-        });
-    
-      
-        
-        const tmpDir = os.tmpdir();
-        
-        
-        const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`);
-    
-        
-        await streamPipeline(audioStream, writableStream);
-
-        const doc = {
-            audio: {
-            url: `${tmpDir}/${title}.mp3`
-            },
-            mimetype: 'audio/mpeg',
-            ptt: false,
-            waveform: [100, 0, 0, 0, 0, 0, 100],
-            fileName: `${title}`,
-        
-        };
-    
-        await conn.sendMessage(m.chat, doc, { quoted: m });
-    
-    
-       
-
-        
-    } else {
-        m.reply("Invalid sequence number. Please select the appropriate number from the list above.\nBetween 1 to " + result.allLinks.length);
+  if (!text) throw `${tradutor.texto1[0]} _${usedPrefix + command} ${tradutor.texto1[1]}`;
+    const yt_play = await search(args.join(' '));
+    let additionalText = '';
+    if (command === 'play') {
+      additionalText = 'audio';
+    } else if (command === 'play2') {
+      additionalText = 'vídeo';
     }
+    const texto1 = `${tradutor.texto2[0]} ${yt_play[0].title}\n\n${tradutor.texto2[1]} ${yt_play[0].ago}\n\n${tradutor.texto2[2]} ${secondString(yt_play[0].duration.seconds)}\n\n${tradutor.texto2[3]} ${`${MilesNumber(yt_play[0].views)}`}\n\n${tradutor.texto2[4]} ${yt_play[0].author.name}\n\n${tradutor.texto2[5]} ${yt_play[0].videoId}\n\n${tradutor.texto2[6]} ${yt_play[0].type}\n\n${tradutor.texto2[7]} ${yt_play[0].url}\n\n${tradutor.texto2[8]} ${yt_play[0].author.url}\n\n${tradutor.texto2[9]} ${additionalText}. ${tradutor.texto2[10]}`.trim();
+    conn.sendMessage(m.chat, {image: {url: yt_play[0].thumbnail}, caption: texto1}, {quoted: m});
+    if (command == 'play') {
+    try {   
+    const audio = global.API('CFROSAPI', `/api/v1/ytmp3?url=${yt_play[0].url}`)
+    const ttl = await yt_play[0].title
+    const buff_aud = await getBuffer(audio);
+    const fileSizeInBytes = buff_aud.byteLength;
+    const fileSizeInKB = fileSizeInBytes / 1024;
+    const fileSizeInMB = fileSizeInKB / 1024;
+    const size = fileSizeInMB.toFixed(2);       
+    if (size >= limit_a2) {  
+    await conn.sendMessage(m.chat, {text: `${tradutor.texto3} _${audio}_`}, {quoted: m});
+    return;    
+    }     
+    if (size >= limit_a1 && size <= limit_a2) {  
+    await conn.sendMessage(m.chat, {document: buff_aud, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m});   
+    return;
+    } else {
+    await conn.sendMessage(m.chat, {audio: buff_aud, mimetype: 'audio/mpeg', fileName: ttl + `.mp3`}, {quoted: m});   
+    return;    
+    }} catch {
+    throw tradutor.texto4;    
+    }}
+    if (command == 'play2') {
+    try {   
+    const video = global.API('CFROSAPI', `/api/v1/ytmp4?url=${yt_play[0].url}`)
+    const ttl2 = await yt_play[0].title
+    const buff_vid = await getBuffer(video);
+    const fileSizeInBytes2 = buff_vid.byteLength;
+    const fileSizeInKB2 = fileSizeInBytes2 / 1024;
+    const fileSizeInMB2 = fileSizeInKB2 / 1024;
+    const size2 = fileSizeInMB2.toFixed(2);       
+    if (size2 >= limit2) {  
+    await conn.sendMessage(m.chat, {text: `${tradutor.texto5} _${video}_`}, {quoted: m});
+    return;    
+    }     
+    if (size2 >= limit1 && size2 <= limit2) {  
+    await conn.sendMessage(m.chat, {document: buff_vid, mimetype: 'video/mp4', fileName: ttl2 + `.mp4`}, {quoted: m});   
+    return;
+    } else {
+    await conn.sendMessage(m.chat, {video: buff_vid, mimetype: 'video/mp4', fileName: ttl2 + `.mp4`}, {quoted: m});   
+    return;    
+    }} catch {
+    throw tradutor.texto6;    
+    }
+  }
 };
-
-handler.help = ["play"];
-handler.tags = ["downloader"];
-handler.command = /^(play)$/i;
-handler.limit = true;
+handler.command = /^(play|play2)$/i;
 export default handler;
 
-function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return "0 B";
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+async function search(query, options = {}) {
+  const search = await yts.search({query, hl: 'es', gl: 'ES', ...options});
+  return search.videos;
 }
 
-async function searchAndDownloadMusic(query) {
-    try {
-        const { videos } = await yts(query);
-        if (!videos.length) return "Sorry, no video results were found for this search.";
-
-        const allLinks = videos.map(video => ({
-            title: video.title,
-            url: video.url,
-        }));
-
-        const jsonData = {
-            title: videos[0].title,
-            description: videos[0].description,
-            duration: videos[0].duration,
-            author: videos[0].author.name,
-            allLinks: allLinks,
-            videoUrl: videos[0].url,
-            thumbnail: videos[0].thumbnail,
-        };
-
-        return jsonData;
-    } catch (error) {
-        return "Error: " + error.message;
-    }
+function MilesNumber(number) {
+  const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+  const rep = '$1.';
+  const arr = number.toString().split('.');
+  arr[0] = arr[0].replace(exp, rep);
+  return arr[1] ? arr.join('.') : arr[0];
 }
 
-
-async function fetchVideoBuffer() {
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
-        });
-        return await response.buffer();
-    } catch (error) {
-        return null;
-    }
+function secondString(seconds) {
+  seconds = Number(seconds);
+  const d = Math.floor(seconds / (3600 * 24));
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  const dDisplay = d > 0 ? d + (d == 1 ? 'd ' : 'd ') : '';
+  const hDisplay = h > 0 ? h + (h == 1 ? 'h ' : 'h ') : '';
+  const mDisplay = m > 0 ? m + (m == 1 ? 'm ' : 'm ') : '';
+  const sDisplay = s > 0 ? s + (s == 1 ? 's' : 's') : '';
+  return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
-function generateRandomName() {
-    const adjectives = ["happy", "sad", "funny", "brave", "clever", "kind", "silly", "wise", "gentle", "bold"];
-    const nouns = ["cat", "dog", "bird", "tree", "river", "mountain", "sun", "moon", "star", "cloud"];
-    
-    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    
-    return randomAdjective + "-" + randomNoun;
+function bytesToSize(bytes) {
+  return new Promise((resolve, reject) => {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes === 0) return 'n/a';
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+    if (i === 0) resolve(`${bytes} ${sizes[i]}`);
+    resolve(`${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`);
+  });
 }
+
+const getBuffer = async (url, options) => {
+    options ? options : {};
+    const res = await axios({method: 'get', url, headers: {'DNT': 1, 'Upgrade-Insecure-Request': 1,}, ...options, responseType: 'arraybuffer'});
+    return res.data;
+};
