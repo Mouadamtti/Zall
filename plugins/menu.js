@@ -31,7 +31,12 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
  ▢ *Experiencia:* ${exp}
  ▢ *Premium:* ${user.premiumTime > 0 ? '✅' : (isPrems ? '✅' : '❌') || ''}
  ${readMore}
-    *PREMIUM COMMENDS*
+   *BOT COMMNDS*
+□ .*jadibot*
+□ .*runtime*
+□ .*ping*
+              
+   *PREMIUM COMMENDS*
 □ .*modapk*
 
    *AI COMMENDS*
@@ -39,13 +44,18 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*bimg* 
 □ .*emojimix*
 □ .*levelup*
+□ .*tr* _<code>_
+□ .*imagine*
 
    *DOWNLOAD COMMENDS* 
 □ .*yts*
 □ .*ytv*
 □ .*yta*
 □ .*fb*
-□ .*play2*
+□ .*song*
+
+   *OTHER COMMENDS*
+□ .*math*
 
 `.trim();
     if (m.isGroup) {
