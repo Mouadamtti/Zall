@@ -38,6 +38,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
               
    *PREMIUM COMMENDS*
 □ .*modapk*
+□ .*mediafire1*
 
    *AI COMMENDS*
 □ .*hdr*
@@ -46,6 +47,8 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*levelup*
 □ .*tr* _<code>_
 □ .*imagine*
+□ .*sticker*
+□ .*gitagpt*
 
    *DOWNLOAD COMMENDS* 
 □ .*yts*
@@ -53,9 +56,15 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*yta*
 □ .*fb*
 □ .*song*
+□ .*spotify*
+□ .*tiktok*
+□ .*twitter*
 
    *OTHER COMMENDS*
 □ .*math*
+□ .*tempmail*
+□ .*Messi*
+□ .*Ronaldo*
 
 `.trim();
     if (m.isGroup) {
