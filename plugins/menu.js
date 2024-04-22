@@ -37,8 +37,12 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*ping*
               
    *PREMIUM COMMENDS*
-□ .*modapk*
-□ .*mediafire1*
+□ .*apk*
+□ .*mediafire*
+
+   *DOWNLOAD CMMENDS FREE*
+□ .*mega*
+□ .*manga
 
    *AI COMMENDS*
 □ .*hdr*
@@ -49,12 +53,14 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*imagine*
 □ .*sticker*
 □ .*gitagpt*
+□ .*image*
 
    *DOWNLOAD COMMENDS* 
 □ .*yts*
 □ .*ytv*
 □ .*yta*
 □ .*fb*
+□ .*ig*
 □ .*song*
 □ .*spotify*
 □ .*tiktok*
