@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, args, command, text }) => {
 
   let res;
   try {
-    res = await fetch(`${vidoe}/igdlv1?url=${text}`);
+    res = await fetch(`/igdlv1?url=${text}`);
   } catch (error) {
     throw `An error occurred: ${error.message}`;
   }
