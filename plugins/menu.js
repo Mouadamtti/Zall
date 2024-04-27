@@ -42,7 +42,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 
    *DOWNLOAD CMMENDS FREE*
 □ .*mega*
-□ .*manga
+□ .*manga*
 
    *AI COMMENDS*
 □ .*hdr*
@@ -62,7 +62,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
 □ .*fb*
 □ .*ig*
 □ .*song*
-□ .*spotify*
+□ .*spotifypro*
 □ .*tiktok*
 □ .*twitter*
 
