@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner, isPrems }) =
      else limit = 100
    if (!args[0]) throw `✳️ Enter the mediafire link next to the command`
     if (!args[0].match(/mediafire/gi)) throw `❎ Link incorrect`
-    m.react(rwait)
+    m.react
     let full = /f$/i.test(command)
     let u = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]
     let ss = await (await fetch(`https://image.thum.io/get/fullpage/${u}`)).buffer()
