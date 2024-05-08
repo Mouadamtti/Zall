@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         if (!res.ok) throw `error api`;
         let data = await res.json();
 
-        for (let item of data.result) {
+        for (let item of) {
             let caption = '';
             if (item.author) {
                 caption += `Author: ${item.author.nickname || 'Unknown'} (${item.author.unique_id || 'Unknown'})\n`;
