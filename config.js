@@ -1,5 +1,5 @@
 {
-"name": "GataBot-MD",
+"name": "bobiza",
 "version": "1.7.0", 
 "description": "Super Bot WhatsApp",
 "main": "index.js",
@@ -19,7 +19,7 @@
     
 "homepage": "https://github.com/GataNina-Li/GataBot-MD",
 "author": {
-"name": "GataNina-Li" },
+"name": "bobiza" },
     
 "repository": {
 "type": "git",
