@@ -1,103 +1,81 @@
-{
-  "name": "zall",
-  "version": "1.0.0",
-  "description": "Subs. al canal de YT The Shadow Borkers - TEAM",
-  "main": "index.js",
-  "type": "module",
-  "directories": {
-    "lib": "lib",
-    "src": "src",
-    "plugins": "plugins"
-  },
-    "scripts": {
-    "start": "node index.js",
-    "qr": "node index.js qr",
-    "code": "node index.js code",
-    "test": "node test.js",
-    "test2": "nodemon index.js", 
-    "eslint": "eslint .",
-    "eslintfix": "eslint --fix ."
-  },
-  "homepage": "https://github.com/Mouadamtti/Zall",
-  "author": {
-    "name": "BrunoSobrino"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mouadamtti/Zall.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Mouadamtti/Zall/issues"
-  },
-  "license": "GPL-3.0-or-later",
-  "dependencies": {
-    "@adiwajshing/keyed-db": "^0.2.4",
-    "@bochilteam/scraper": "^4.2.4",
-    "@brandond/findthelyrics": "^2.0.5",
-    "@green-code/music-track-data": "^2.0.3",
-    "@sasmeee/igdl": "npm:@sasmeee/igdl",
-    "@shineiichijo/marika": "^2.0.6",
-    "node-shazam": "*",
-    "@vitalets/google-translate-api": "^8.0.0",
-    "@whiskeysockets/baileys": "npm:@whiskeysockets/baileys",
-    "@xct007/frieren-scraper": "github:xct007/frieren-scraper",
-    "@sefinek/google-tts-api": "*",
-    "acrcloud": "^1.4.0",
-    "api-dylux": "^1.6.2",
-    "aptoide-scraper": "^1.0.1",
-    "awesome-phonenumber": "^2.68.0",
-    "axios": "^1.1.3",
-    "body-parser": "^1.20.2",
-    "cfonts": "^2.10.0",
-    "chalk": "^5.0.0",
-    "cheerio": "^1.0.0-rc.10",
-    "colors": "1.4.0",
-    "express": "^4.17.3",
-    "fb-downloader-scrapper": "^1.0.1",
-    "file-type": "^17.1.1",
-    "fluid-spotify.js": "*",
-    "fluent-ffmpeg": "^2.1.2",
-    "formdata-node": "^4.3.2",
-    "fs": "^0.0.1-security",
-    "google-it": "^1.6.3",
-    "google-play-scraper": "^10.0.0",
-    "hispamemes": "^1.0.7",
-    "human-readable": "^0.2.1",
-    "imagemaker.js": "^2.0.4",
-    "instagram-url-direct": "^1.0.13",
-    "jsdom": "^19.0.0",
-    "link-preview-js": "^3.0.0",
-    "lodash": "^4.17.21",
-    "lowdb": "^3.0.0",
-    "md5": "^2.3.0",
-    "megajs": "^1.1.3",
-    "moment-timezone": "^0.5.34",
-    "mongoose": "^6.3.3",
-    "node-fetch": "^3.2.0",
-    "node-gtts": "^2.0.2",
-    "node-id3": "^0.2.6",
-    "node-webpmux": "^3.1.1",
-    "openai": "^3.3.0",
-    "pdfkit": "^0.13.0",
-    "perf_hooks": "^0.0.1",
-    "pino": "^7.8.0",
-    "pino-pretty": "^7.5.1",
-    "qrcode": "^1.5.0",
-    "qrcode-terminal": "^0.12.0",
-    "readline": "^1.3.0",
-    "similarity": "^1.2.1",
-    "socket.io": "^4.4.1",
-    "sanzy-spotifydl": "*",
-    "syntax-error": "^1.4.0",
-    "terminal-image": "^2.0.0",
-    "url-regex-safe": "^3.0.0",
-    "wa-sticker-formatter": "^4.3.2",
-    "yargs": "^17.3.1",
-    "yt-search": "^2.10.3",
-    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2"
-  },
-  "devDependencies": {
-    "eslint": "^8.45.0",
-    "eslint-config-google": "^0.14.0"
-  }
-}
+import {watchFile, unwatchFile} from 'fs';
+import chalk from 'chalk';
+import {fileURLToPath} from 'url';
+import fs from 'fs'; 
+import cheerio from 'cheerio';
+import fetch from 'node-fetch';
+import axios from 'axios';
+import moment from 'moment-timezone';
+
+global.botnumber = ""
+global.confirmCode = ""
+
+global.owner = [
+  ['212630886351', 'Mouad !', true],
+];
+
+global.suittag = ['212630886351'];
+global.prems = ['212630886351'];
+
+global.packname = 'JITOOSA';
+global.author = 'by';
+global.wm = 'Zall';
+global.titulowm = 'Zall';
+global.titulowm2 = `MOUAD`
+global.igfg = 'JITISSA';
+global.wait = '> _جاري معالجة طلبك حاول الإنتظار ..._\n\n *متابعة للمطور في إنستجرام* \n*_instagram.com/ovmar_1_*';
+global.rwait = '⏳';
+global.done = '✅';
+
+global.mods = [];
+
+//* *******Tiempo***************
+global.d = new Date(new Date + 3600000);
+global.locale = 'es';
+global.dia = d.toLocaleDateString(locale, {weekday: 'long'});
+global.fecha = d.toLocaleDateString('es', {day: 'numeric', month: 'numeric', year: 'numeric'});
+global.mes = d.toLocaleDateString('es', {month: 'long'});
+global.año = d.toLocaleDateString('es', {year: 'numeric'});
+global.tiempo = d.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true});
+//* ****************************
+global.wm2 = `${dia} ${fecha}\nJITOSSA`;
+global.gt = 'Zall';
+global.mysticbot = 'Zall';
+global.md = 'https://github.com/Mouadamtti/Zall';
+global.mysticbot = 'https://github.com/Mouadamtti/Zall';
+global.waitt = '> 🕒 سيتم الرد على سؤالك قريبًا.';
+global.waittt = '|🧚‍♀️| *جاري توليد الصورة الخاصة بك*';
+global.nomorown = '212670941551';
+global.pdoc = ['application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/msword', 'application/pdf', 'text/rtf'];
+global.cmenut = '❖––––––『';
+global.cmenub = '┊✦ ';
+global.cmenuf = '╰━═┅═━––––––๑\n';
+global.cmenua = '\n⌕ ❙❘❙❙❘❙❚❙❘❙❙❚❙❘❙❘❙❚❙❘❙❙❚❙❘❙❙❘❙❚❙❘ ⌕\n     ';
+global.dmenut = '*❖─┅──┅〈*';
+global.dmenub = '*┊»*';
+global.dmenub2 = '*┊*';
+global.dmenuf = '*╰┅────────┅✦*';
+global.htjava = '⫹⫺';
+global.htki = '*⭑•̩̩͙⊱•••• ☪*';
+global.htka = '*☪ ••••̩̩͙⊰•⭑*';
+global.comienzo = '• • ◕◕════';
+global.fin = '════◕◕ • •';
+global.botdate = `*[ 📅 ] Fecha:*  ${moment.tz('Africa/Casablanca').format('DD/MM/YY')}`;
+global.bottime = `*[ ⏳ ] Hora:* ${moment.tz('Africa/Casablanca').format('HH:mm:ss')}`;
+global.fgif = {key: {participant: '0@s.whatsapp.net'}, message: {'videoMessage': {'title': wm, 'h': `Hmm`, 'seconds': '999999999', 'gifPlayback': 'true', 'caption': bottime, 'jpegThumbnail': fs.readFileSync('./Menu.png')}}};
+global.multiplier = 99;
+global.flaaa = [
+  'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=water-logo&script=water-logo&fontsize=90&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextColor=%23000&shadowGlowColor=%23000&backgroundColor=%23000&text=',
+  'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=crafts-logo&fontsize=90&doScale=true&scaleWidth=800&scaleHeight=500&text=',
+  'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=amped-logo&doScale=true&scaleWidth=800&scaleHeight=500&text=',
+  'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text=',
+  'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23f2aa4c&fillColor2Color=%23f2aa4c&fillColor3Color=%23f2aa4c&fillColor4Color=%23f2aa4c&fillColor5Color=%23f2aa4c&fillColor6Color=%23f2aa4c&fillColor7Color=%23f2aa4c&fillColor8Color=%23f2aa4c&fillColor9Color=%23f2aa4c&fillColor10Color=%23f2aa4c&fillOutlineColor=%23f2aa4c&fillOutline2Color=%23f2aa4c&backgroundColor=%23101820&text=',
+];
+//* ************************
+
+const file = fileURLToPath(import.meta.url);
+watchFile(file, () => {
+  unwatchFile(file);
+  console.log(chalk.redBright('Update \'config.js\''));
+  import(`${file}?update=${Date.now()}`);
+});
