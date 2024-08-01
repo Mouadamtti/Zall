@@ -43,4 +43,5 @@ let handler = async (m, { conn, usedPrefix: prefix, command, text }) => {
 handler.help = ['apk']
 handler.tags = ['downloader']
 handler.command = /^apk$/i
+handler.premum = true;
 export default handler
